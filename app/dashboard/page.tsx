@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import type { Property } from "../../components/types";
 
@@ -20,7 +21,7 @@ export default function DashboardPage() {
       <Sidebar />
       <div className="flex-1 flex flex-col">
         <Navbar />
-        <main className="p-8">
+        <main className="p-8 flex flex-col">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Landlord Dashboard</h1>
             <button
