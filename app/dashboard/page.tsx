@@ -1,20 +1,39 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import type { Property } from "../../components/types";
-
 import Navbar from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import PropertyList from "../../components/PropertyList";
 import AddPropertyForm from "../../components/AddPropertyForm";
 
 export default function DashboardPage() {
+  const router = useRouter();
+  const [loading, setLoading] = useState(true);
   const [properties, setProperties] = useState<Property[]>([]);
   const [showAddForm, setShowAddForm] = useState(false);
+
+  useEffect(() => {
+    const loggedIn = localStorage.getItem("loggedIn");
+    if (!loggedIn) {
+      router.replace("/login");
+    } else {
+      setLoading(false);
+    }
+  }, [router]);
 
   const handleAddProperty = (property: Property) => {
     setProperties((prev) => [...prev, property]);
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <p>Loading...</p>
+      </div>
+    );
+  }
 
   return (
     <div className="flex h-screen bg-gray-50">

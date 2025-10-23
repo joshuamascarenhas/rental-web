@@ -1,11 +1,33 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
 export default function Sidebar() {
+  const pathname = usePathname();
+  
+  const links = [
+    { href: "/dashboard", label: "Dashboard" },
+    { href: "/dashboard/properties", label: "Properties" },
+    { href: "/dashboard/profile", label: "Profile" },
+  ];
+
   return (
-    <aside className="w-64 h-full bg-gray-100 px-4 py-8 shadow-md">
-      <ul>
-        <li className="mb-4 font-medium"><a href="/dashboard">Dashboard</a></li>
-        <li className="mb-4"><a href="#">Add Property</a></li>
-        <li className="mb-4"><a href="#">Verifications</a></li>
-      </ul>
+    <aside className="w-64 bg-gray-800 text-white min-h-screen flex flex-col p-6">
+      <div className="mb-8 font-bold text-2xl">Rental Web</div>
+      <nav className="flex flex-col gap-4">
+        {links.map(({ href, label }) => (
+          <Link
+            key={href}
+            href={href}
+            className={`px-3 py-2 rounded hover:bg-gray-700 transition ${
+              pathname === href ? "bg-gray-700" : ""
+            }`}
+          >
+            {label}
+          </Link>
+        ))}
+      </nav>
     </aside>
   );
 }

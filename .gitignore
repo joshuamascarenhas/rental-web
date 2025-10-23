@@ -1,5 +1,3 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
 /node_modules
 /.pnp
@@ -39,3 +37,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Firebase service account - add to .gitignore to avoid leaking sensitive info
+rentalapp-58fff-firebase-adminsdk-fbsvc-545602b764.json
+
+.env.local
